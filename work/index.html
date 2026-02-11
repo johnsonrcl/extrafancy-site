@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work — Chris Johnson</title>
+  <meta name="description" content="Concept to market. Strategy, design, and brand.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Work — Chris Johnson">
+  <meta property="og:description" content="Concept to market. Strategy, design, and brand.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://extrafancy.co/work">
+  <meta property="og:image" content="https://extrafancy.co/og-work.png">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Work — Chris Johnson">
+  <meta name="twitter:description" content="Concept to market. Strategy, design, and brand.">
+  <meta name="twitter:image" content="https://extrafancy.co/og-work.png">
+  
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg: #0a0a0a;
+      --fg: #e8e4df;
+      --muted: #666;
+      --accent: #888;
+    }
+    
+    html { font-size: 18px; }
+    
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 1.5s ease, color 1.5s ease;
+    }
+    
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+    
+    .left {
+      padding: 12vh 6vw 8vh 10vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .right {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 3rem;
+      padding-left: 6vw;
+      border-left: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    h1 {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6vh;
+    }
+    
+    h1 a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    
+    .sections {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+    
+    .section-title {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      opacity: 0.6;
+    }
+    
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    
+    .project {
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--fg);
+      cursor: pointer;
+      transition: color 0.2s ease;
+      display: inline-block;
+      width: fit-content;
+    }
+    
+    .project:hover,
+    .project.active {
+      color: var(--accent);
+    }
+    
+    .project[data-url]:not([data-url=""]) {
+      cursor: pointer;
+    }
+    
+    footer {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 4rem;
+    }
+    
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    footer a:hover { color: var(--fg); }
+    footer span { color: rgba(255,255,255,0.2); }
+    
+    /* Preview window - scales with viewport */
+    .preview {
+      width: clamp(350px, 35vw, 700px);
+      aspect-ratio: 3/2;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .preview.visible {
+      opacity: 1;
+    }
+    
+    .preview img {
+      width: 100%;
+      flex: 1;
+      object-fit: cover;
+      object-position: top;
+    }
+    
+    .preview .caption {
+      padding: 1rem 1.25rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .preview .caption a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    .preview .caption a:hover {
+      color: var(--fg);
+    }
+    
+    /* Mobile overlay */
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .mobile-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .mobile-overlay .preview {
+      max-width: 100%;
+      opacity: 1;
+    }
+    
+    .mobile-overlay .close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 1.5rem;
+      color: var(--muted);
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    @media (max-width: 1000px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .right {
+        display: none;
+      }
+      .left {
+        padding: 10vh 8vw;
+      }
+      .mobile-overlay {
+        display: flex;
+      }
+    }
+    
+    /* Time-based themes */
+    body.morning {
+      --bg: #f5f0e8;
+      --fg: #2a2520;
+      --muted: #8a8580;
+      --accent: #5a5550;
+    }
+    
+    body.afternoon {
+      --bg: #faf6f0;
+      --fg: #1a1815;
+      --muted: #9a9590;
+      --accent: #6a6560;
+    }
+    
+    body.evening {
+      --bg: #1a1512;
+      --fg: #e8e0d8;
+      --muted: #786860;
+      --accent: #a89888;
+    }
+    
+    body.night {
+      --bg: #0a0a0a;
+      --fg: #e8e4df;
+      --muted: #666;
+      --accent: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div>
+        <h1><a href="/">Extra Fancy</a></h1>
+        
+        <div class="sections">
+          <div class="section">
+            <div class="section-title">Design</div>
+            <div class="project-list">
+              <div class="project" data-img="/work/img/metta.png" data-caption="Grub Street — Adam Platt" data-url="https://www.grubstreet.com/article/metta-nyc-restaurant-review.html">Mettā</div>
+              <div class="project" data-img="/work/img/bumu.png" data-caption="Michelin Guide, 2019" data-url="https://guide.michelin.com/us/en/article/dining-out/bumu-restaurant-nyc-joaquin-baca">Būmu</div>
+              <div class="project" data-img="/work/img/bocce.png" data-caption="Time Out New York" data-url="https://www.timeout.com/newyork/restaurants/bocce-union-square">Bocce</div>
+            </div>
+          </div>
+          
+          <div class="section">
+            <div class="section-title">Beverage</div>
+            <div class="project-list">
+              <div class="project" data-img="/work/img/eddy.png" data-caption="The New York Times" data-url="https://www.nytimes.com/2015/06/24/dining/restaurant-reviews-noreetuh-the-eddy-in-the-east-village.html">The Eddy</div>
+              <div class="project" data-img="/work/img/maialino.png" data-caption="The New York Times — Sam Sifton" data-url="https://www.nytimes.com/2010/01/20/dining/reviews/20rest.html">Maialino</div>
+              <div class="project" data-img="/work/img/hillstone.png" data-caption="Bon Appétit, 2016" data-url="https://www.bonappetit.com/restaurants-travel/article/hillstone">Hillstone</div>
+              <div class="project" data-img="/work/img/sonnenalp.png" data-caption="Michelin Guide — One Key" data-url="https://guide.michelin.com/us/en/article/travel/five-things-to-know-about-vail-s-iconic-one-michelin-key-chalet">Sonnenalp</div>
+            </div>
+          </div>
+          
+          <div class="section">
+            <div class="section-title">Tech</div>
+            <div class="project-list">
+              <div class="project" data-img="/work/img/gunio.png" data-caption="Marketing" data-url="https://gun.io/">Gun.io</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <a href="/letters">Letters</a>
+        <span>·</span>
+        <a href="/work">Work</a>
+        <span>·</span>
+        <a href="mailto:chris@extrafancy.co">chris@extrafancy.co</a>
+      </footer>
+    </div>
+    
+    <div class="right">
+      <div class="preview" id="preview">
+        <img src="" alt="" id="preview-img">
+        <div class="caption">
+          <span id="preview-caption"></span>
+          <a href="" id="preview-link" target="_blank">Read →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile overlay -->
+  <div class="mobile-overlay" id="mobile-overlay">
+    <div class="close" id="mobile-close">✕</div>
+    <div class="preview visible">
+      <img src="" alt="" id="mobile-img">
+      <div class="caption">
+        <span id="mobile-caption"></span>
+        <a href="" id="mobile-link" target="_blank">Read →</a>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Time-based theme
+    function setTimeTheme() {
+      const hour = new Date().getHours();
+      const body = document.body;
+      body.classList.remove('morning', 'afternoon', 'evening', 'night');
+      
+      if (hour >= 6 && hour < 12) {
+        body.classList.add('morning');
+      } else if (hour >= 12 && hour < 17) {
+        body.classList.add('afternoon');
+      } else if (hour >= 17 && hour < 21) {
+        body.classList.add('evening');
+      } else {
+        body.classList.add('night');
+      }
+    }
+    
+    setTimeTheme();
+    setInterval(setTimeTheme, 60000);
+    
+    // Desktop preview
+    const preview = document.getElementById('preview');
+    const previewImg = document.getElementById('preview-img');
+    const previewCaption = document.getElementById('preview-caption');
+    const previewLink = document.getElementById('preview-link');
+    
+    // Mobile overlay
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const mobileImg = document.getElementById('mobile-img');
+    const mobileCaption = document.getElementById('mobile-caption');
+    const mobileLink = document.getElementById('mobile-link');
+    const mobileClose = document.getElementById('mobile-close');
+    
+    const isMobile = () => window.innerWidth <= 1000;
+    
+    document.querySelectorAll('.project').forEach(project => {
+      // Desktop: hover shows preview, click goes to article
+      project.addEventListener('mouseenter', () => {
+        if (isMobile()) return;
+        const img = project.dataset.img;
+        const caption = project.dataset.caption;
+        const url = project.dataset.url;
+        
+        previewImg.src = img;
+        previewCaption.textContent = caption;
+        if (url) {
+          previewLink.href = url;
+          previewLink.style.display = 'inline';
+        } else {
+          previewLink.style.display = 'none';
+        }
+        preview.classList.add('visible');
+      });
+      
+      project.addEventListener('mouseleave', () => {
+        if (isMobile()) return;
+        preview.classList.remove('visible');
+      });
+      
+      // Desktop: click goes to article
+      project.addEventListener('click', () => {
+        if (isMobile()) return;
+        const url = project.dataset.url;
+        if (url) window.open(url, '_blank');
+      });
+      
+      // Mobile: tap shows overlay with link
+      project.addEventListener('click', () => {
+        if (!isMobile()) return;
+        const img = project.dataset.img;
+        const caption = project.dataset.caption;
+        const url = project.dataset.url;
+        
+        mobileImg.src = img;
+        mobileCaption.textContent = caption;
+        if (url) {
+          mobileLink.href = url;
+          mobileLink.style.display = 'inline';
+        } else {
+          mobileLink.style.display = 'none';
+        }
+        mobileOverlay.classList.add('visible');
+        
+        // Mark active
+        document.querySelectorAll('.project').forEach(p => p.classList.remove('active'));
+        project.classList.add('active');
+      });
+    });
+    
+    // Close mobile overlay
+    mobileClose.addEventListener('click', () => {
+      mobileOverlay.classList.remove('visible');
+      document.querySelectorAll('.project').forEach(p => p.classList.remove('active'));
+    });
+    
+    mobileOverlay.addEventListener('click', (e) => {
+      if (e.target === mobileOverlay) {
+        mobileOverlay.classList.remove('visible');
+        document.querySelectorAll('.project').forEach(p => p.classList.remove('active'));
+      }
+    });
+  </script>
+</body>
+</html>
