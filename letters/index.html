@@ -31,6 +31,8 @@
   <link rel="canonical" href="https://extrafancy.co/letters/">
   
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
@@ -137,8 +139,43 @@
     }
     
     .subscribe-form button:disabled {
-      opacity: 0.5;
+      opacity: 0.7;
       cursor: not-allowed;
+    }
+    
+    .subscribe-form button.loading {
+      position: relative;
+      color: transparent;
+    }
+    
+    .subscribe-form button.loading::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      top: 50%;
+      left: 50%;
+      margin-left: -8px;
+      margin-top: -8px;
+      border: 2px solid var(--bg);
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 0.8s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .form-success {
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+    
+    .form-success.show {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .message {
@@ -220,7 +257,7 @@
     <p class="tagline">For people who notice.</p>
     
     <form class="subscribe-form" id="subscribe-form">
-      <input type="email" id="email" placeholder="your@email.com" required>
+      <input type="email" id="email" placeholder="your@email.com" required aria-label="Email address">
       <button type="submit" id="submit-btn">Subscribe</button>
     </form>
     
@@ -269,7 +306,7 @@
       if (!email) return;
       
       submitBtn.disabled = true;
-      submitBtn.textContent = '...';
+      submitBtn.classList.add('loading');
       message.textContent = '';
       message.className = 'message';
       
@@ -300,7 +337,7 @@
         message.className = 'message error';
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Subscribe';
+        submitBtn.classList.remove('loading');
       }
     });
   </script>
