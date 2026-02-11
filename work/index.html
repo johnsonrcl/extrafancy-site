@@ -33,6 +33,8 @@
   <link rel="canonical" href="https://extrafancy.co/work/">
   
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
@@ -334,7 +336,10 @@
     
     <div class="right">
       <div class="preview" id="preview">
-        <img src="" alt="" id="preview-img">
+        <picture>
+          <source id="preview-webp" type="image/webp" srcset="">
+          <img src="" alt="" id="preview-img">
+        </picture>
         <div class="caption">
           <span id="preview-caption"></span>
           <a href="" id="preview-link" target="_blank">Read →</a>
@@ -347,7 +352,10 @@
   <div class="mobile-overlay" id="mobile-overlay">
     <div class="close" id="mobile-close">✕</div>
     <div class="preview visible">
-      <img src="" alt="" id="mobile-img">
+      <picture>
+        <source id="mobile-webp" type="image/webp" srcset="">
+        <img src="" alt="" id="mobile-img">
+      </picture>
       <div class="caption">
         <span id="mobile-caption"></span>
         <a href="" id="mobile-link" target="_blank">Read →</a>
@@ -379,17 +387,22 @@
     // Desktop preview
     const preview = document.getElementById('preview');
     const previewImg = document.getElementById('preview-img');
+    const previewWebp = document.getElementById('preview-webp');
     const previewCaption = document.getElementById('preview-caption');
     const previewLink = document.getElementById('preview-link');
     
     // Mobile overlay
     const mobileOverlay = document.getElementById('mobile-overlay');
     const mobileImg = document.getElementById('mobile-img');
+    const mobileWebp = document.getElementById('mobile-webp');
     const mobileCaption = document.getElementById('mobile-caption');
     const mobileLink = document.getElementById('mobile-link');
     const mobileClose = document.getElementById('mobile-close');
     
     const isMobile = () => window.innerWidth <= 1000;
+    
+    // Helper to get WebP path from PNG path
+    const toWebp = (pngPath) => pngPath.replace('.png', '.webp');
     
     document.querySelectorAll('.project').forEach(project => {
       // Desktop: hover shows preview, click goes to article
@@ -399,6 +412,7 @@
         const caption = project.dataset.caption;
         const url = project.dataset.url;
         
+        previewWebp.srcset = toWebp(img);
         previewImg.src = img;
         previewCaption.textContent = caption;
         if (url) {
@@ -429,6 +443,7 @@
         const caption = project.dataset.caption;
         const url = project.dataset.url;
         
+        mobileWebp.srcset = toWebp(img);
         mobileImg.src = img;
         mobileCaption.textContent = caption;
         if (url) {
