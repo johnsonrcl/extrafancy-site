@@ -1,0 +1,3 @@
+# If you find a security issue, please report it.
+Contact: mailto:chris@extrafancy.co
+Preferred-Languages: en
