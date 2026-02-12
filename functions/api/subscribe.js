@@ -1,5 +1,5 @@
 export async function onRequestPost(context) {
-  const { request } = context;
+  const { request, env } = context;
   
   // CORS headers
   const corsHeaders = {
@@ -20,12 +20,12 @@ export async function onRequestPost(context) {
     }
 
     const response = await fetch(
-      'https://api.beehiiv.com/v2/publications/pub_30d332b4-136f-469c-91e4-7f0fda44ac42/subscriptions',
+      `https://api.beehiiv.com/v2/publications/${env.BEEHIIV_PUB_ID}/subscriptions`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer PKgaSDKqSnRLR8ULPB5uG6nFbssqsEVACkbhOAhtlnxy8HXrr0WbzFqNSCW2b7G2',
+          'Authorization': `Bearer ${env.BEEHIIV_API_KEY}`,
         },
         body: JSON.stringify({
           email: email,
