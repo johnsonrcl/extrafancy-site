@@ -1,0 +1,15 @@
+# Extra Fancy
+
+> Extra Fancy is a curated taste platform covering food, wine, travel, and design. Think a cooler, more approachable Monocle. Cultivated taste, not trending content. Taste over trend.
+
+Extra Fancy is a media brand and newsletter focused on the things worth knowing: restaurants, wines, destinations, and design that reward attention. The editorial lens is opinionated and personal, not algorithmic.
+
+## Main
+
+- [Home](https://extrafancy.co/): Landing page and newsletter signup
+- [Newsletter](https://letters.extrafancy.co/): The Extra Fancy newsletter on Beehiiv
+- [Privacy Policy](https://extrafancy.co/privacy.html): Privacy and data practices
+
+## Work
+
+- [Work](https://extrafancy.co/work/): Selected projects and consulting work
