@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4CF52522C4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4CF52522C4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Considered — Extra Fancy</title>
+  <meta name="description" content="Conversations about technology and what it owes to human experience.">
+  <meta name="author" content="Chris Johnson">
+  <meta property="og:title" content="Considered">
+  <meta property="og:description" content="Conversations about technology and what it owes to human experience.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://extrafancy.co/considered">
+  <meta property="og:image" content="https://extrafancy.co/og-image.png">
+  <meta property="og:site_name" content="Extra Fancy">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Considered">
+  <meta name="twitter:description" content="Conversations about technology and what it owes to human experience.">
+  <meta name="twitter:image" content="https://extrafancy.co/og-image.png">
+  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f5f0e8" media="(prefers-color-scheme: light)">
+  <link rel="canonical" href="https://extrafancy.co/considered/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css?v=2">
+  <style>
+    .about {
+      max-width: 28rem;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--fg);
+      opacity: 0.85;
+    }
+
+    .about p + p {
+      margin-top: 1rem;
+    }
+
+    .pitch {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .pitch a {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .pitch a:hover {
+      color: var(--fg);
+    }
+
+    .episodes {
+      margin-top: 3rem;
+    }
+
+    .episodes-label {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.6;
+      margin-bottom: 1rem;
+    }
+
+    .episode-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .episode {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1><a href="/" style="color: inherit; text-decoration: none;">Extra Fancy</a></h1>
+
+    <div class="about">
+      <p>
+        A podcast about technology and what it owes to human experience.
+        Conversations with the operators, chefs, wine directors, and builders
+        doing the actual work of digital transformation in restaurants —
+        not the keynote version.
+      </p>
+      <p>
+        Hosted by Chris Johnson. A decade in New York restaurants, now
+        running growth at Thanx.
+      </p>
+    </div>
+
+    <div class="pitch">
+      <a href="mailto:chris@extrafancy.co?subject=Considered%20%E2%80%94%20pitch">Pitch yourself →</a>
+      <a href="mailto:chris@extrafancy.co?subject=Considered%20%E2%80%94%20guest%20suggestion">Suggest a guest →</a>
+    </div>
+
+    <div class="episodes">
+      <div class="episodes-label">Episodes</div>
+      <div class="episode-list">
+        <span class="episode">Coming soon.</span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <a href="/letters">Letters</a>
+    <span>·</span>
+    <a href="/work">Work</a>
+    <span>·</span>
+    <a href="/considered">Considered</a>
+    <span>·</span>
+    <a href="mailto:chris@extrafancy.co">chris@extrafancy.co</a>
+  </footer>
+
+  <script>
+    function setTimeTheme() {
+      const hour = new Date().getHours();
+      const body = document.body;
+      body.classList.remove('morning', 'afternoon', 'evening', 'night');
+      if (hour >= 6 && hour < 12) body.classList.add('morning');
+      else if (hour >= 12 && hour < 17) body.classList.add('afternoon');
+      else if (hour >= 17 && hour < 21) body.classList.add('evening');
+      else body.classList.add('night');
+    }
+    setTimeTheme();
+    setInterval(setTimeTheme, 60000);
+  </script>
+</body>
+</html>
